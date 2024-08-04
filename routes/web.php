@@ -16,13 +16,13 @@ use Illuminate\Support\Facades\Route;
 // Task 1: point the main "/" URL to the HomeController method "index"
 // Put one code line here below
 
-Route::get('/',[HomeController::class,index]);
+Route::get('/',[HomeController::class,'index']);
 
 
 // Task 2: point the GET URL "/user/[name]" to the UserController method "show"
 // It doesn't use Route Model Binding, it expects $name as a parameter
 // Put one code line here below
-Route::get('user/{name}', ['UserController::class,show']);
+Route::get('user/{name}', [UserController::class,'show']);
 
 
 // Task 3: point the GET URL "/about" to the view
@@ -54,13 +54,13 @@ Route::middleware(['auth'])->group(function () {
         // Task 7: point URL /app/dashboard to a "Single Action" DashboardController
         // Assign the route name "dashboard"
         // Put one Route Group code line here below
-        Route::get('/dashboard', ['DashboardController::class','index'])->name('dashboard');
+        Route::get('/dashboard', [DashboardController::class,'index'])->name('dashboard');
    
 
         // Task 8: Manage tasks with URL /app/tasks/***.
         // Add ONE line to assign 7 resource routes to TaskController
         // Put one code line here below
-        Route::resource('/tasks', 'TaskController');
+        Route::resource('/tasks', TaskController::class);
         });
 
     // End of the /app Route Group
