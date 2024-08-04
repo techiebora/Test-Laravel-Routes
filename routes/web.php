@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\StatsController as AdminStatsController;
+use App\Http\Controllers\DashboardController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -54,7 +56,7 @@ Route::middleware(['auth'])->group(function () {
         // Task 7: point URL /app/dashboard to a "Single Action" DashboardController
         // Assign the route name "dashboard"
         // Put one Route Group code line here below
-        Route::get('/dashboard', [DashboardController::class,'index'])->name('dashboard');
+        Route::get('/dashboard', DashboardController::class)->name('dashboard');
    
 
         // Task 8: Manage tasks with URL /app/tasks/***.
@@ -77,12 +79,12 @@ Route::middleware(['auth'])->group(function () {
 
         // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
         // Put one code line here below
-        Route::get('/dashboard', DashboardController::class);
+        Route::get('/dashboard', AdminDashboardController::class);
 
         // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
         // Put one code line here below
-        Route::get('/stats', StatsController::class);
-    })>middleware('is_admin');
+        Route::get('/stats', AdminStatsController::class);
+    })->middleware('is_admin');
     // End of the /admin Route Group
 });
 // End of the main Authenticated Route Group
